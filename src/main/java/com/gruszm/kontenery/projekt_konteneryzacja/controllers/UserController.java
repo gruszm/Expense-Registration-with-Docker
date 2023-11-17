@@ -1,15 +1,13 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
-import com.gruszm.kontenery.projekt_konteneryzacja.entities.User;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController
 {
@@ -22,8 +20,10 @@ public class UserController
     }
 
     @GetMapping
-    public List<User> getAllUsers()
+    public String getAllUsers(Model model)
     {
-        return userService.findAll();
+        model.addAttribute("users", userService.findAll());
+
+        return "users/show-users";
     }
 }

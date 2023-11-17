@@ -3,27 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>All Expenses</title>
+    <title>All Categories</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <h1>All Expenses:</h1>
+        <h1>All Categories:</h1>
         <table class="table table-striped table-bordered mt-3">
             <thead class="table table-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Expense Name</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Timestamp</th>
+                    <th scope="col">Category Name</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="expense : ${expenses}">
-                    <td th:text="${expense.id}" />
-                    <td th:text="${expense.name}" />
-                    <td th:text="${expense.user.firstName} + ' ' + ${expense.user.lastName}" />
-                    <td th:text="${expense.timestamp}" />
+                <tr th:each="category : ${categories}">
+                    <td th:text="${category.id}" />
+                    <td th:text="${category.name}" />
                 </tr>
             </tbody>
         </table>

@@ -1,15 +1,13 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
-import com.gruszm.kontenery.projekt_konteneryzacja.entities.Category;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/categories")
 public class CategoryController
 {
@@ -22,8 +20,10 @@ public class CategoryController
     }
 
     @GetMapping
-    public List<Category> getAllUsers()
+    public String getAllUsers(Model model)
     {
-        return categoryService.findAll();
+        model.addAttribute("categories", categoryService.findAll());
+
+        return "categories/show-categories";
     }
 }
