@@ -1,15 +1,13 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
-import com.gruszm.kontenery.projekt_konteneryzacja.entities.Expense;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/expenses")
 public class ExpenseController
 {
@@ -22,8 +20,10 @@ public class ExpenseController
     }
 
     @GetMapping
-    public List<Expense> getAllExpenses()
+    public String getAllExpenses(Model model)
     {
-        return expenseService.findAll();
+        model.addAttribute("expenses", expenseService.findAll());
+
+        return "expenses/show-expenses";
     }
 }
