@@ -1,8 +1,8 @@
-package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
+package com.gruszm.kontenery.unused.controllers;
 
-import com.gruszm.kontenery.projekt_konteneryzacja.entities.Book;
-import com.gruszm.kontenery.projekt_konteneryzacja.repositories.BookRepository;
-import com.gruszm.kontenery.projekt_konteneryzacja.services.BookService;
+import com.gruszm.kontenery.unused.entities.Book;
+import com.gruszm.kontenery.unused.repositories.BookRepository;
+import com.gruszm.kontenery.unused.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

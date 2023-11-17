@@ -1,7 +1,7 @@
-package com.gruszm.kontenery.projekt_konteneryzacja.services;
+package com.gruszm.kontenery.unused.services;
 
-import com.gruszm.kontenery.projekt_konteneryzacja.entities.Book;
-import com.gruszm.kontenery.projekt_konteneryzacja.repositories.BookRepository;
+import com.gruszm.kontenery.unused.entities.Book;
+import com.gruszm.kontenery.unused.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.gruszm.kontenery.projekt_konteneryzacja.entities;
+package com.gruszm.kontenery.unused.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
