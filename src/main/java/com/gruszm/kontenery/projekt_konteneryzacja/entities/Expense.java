@@ -1,6 +1,7 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ public class Expense {
     private LocalDateTime timestamp;
     private String name;
     private String description;
+    @DBRef
     private User user;
+    @DBRef
     private Category category;
 
     public Expense()
