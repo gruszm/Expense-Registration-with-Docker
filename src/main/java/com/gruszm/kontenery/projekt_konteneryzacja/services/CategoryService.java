@@ -28,9 +28,25 @@ public class CategoryService
         }
     }
 
+    public void deleteById(String id)
+    {
+        categoryRepository.deleteById(id);
+    }
+
+    public void deleteByName(String name)
+    {
+        Category category = categoryRepository.findByName(name);
+        categoryRepository.delete(category);
+    }
+
     public void save(Category category)
     {
         categoryRepository.save(category);
+    }
+
+    public Category findByName(String name)
+    {
+        return categoryRepository.findByName(name);
     }
 
     public List<Category> findAll()

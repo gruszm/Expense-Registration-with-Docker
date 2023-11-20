@@ -20,7 +20,7 @@ public class UserService
     }
 
     @Transactional
-    public void saveAll(User ... users)
+    public void saveAll(User... users)
     {
         for (User u : users)
         {
@@ -28,9 +28,25 @@ public class UserService
         }
     }
 
+    public void deleteByEmail(String email)
+    {
+        User user = userRepository.findByEmail(email);
+        userRepository.delete(user);
+    }
+
+    public void deleteById(String id)
+    {
+        userRepository.deleteById(id);
+    }
+
     public void save(User user)
     {
         userRepository.save(user);
+    }
+
+    public User findByEmail(String email)
+    {
+        return userRepository.findByEmail(email);
     }
 
     public List<User> findAll()

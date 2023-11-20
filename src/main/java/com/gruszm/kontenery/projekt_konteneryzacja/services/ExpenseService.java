@@ -33,8 +33,27 @@ public class ExpenseService
         expenseRepository.save(expense);
     }
 
+    public void deleteById(String id)
+    {
+        expenseRepository.deleteById(id);
+    }
+
     public List<Expense> findAll()
     {
         return expenseRepository.findAll();
+    }
+
+    public List<Expense> findByCategoryName(String categoryName)
+    {
+        List<Expense> expenses = expenseRepository.findAll();
+        expenses = expenses.stream().filter(expense -> expense.getCategory().getName().equals(categoryName)).toList();
+        return expenses;
+    }
+
+    public List<Expense> findByUserEmail(String userEmail)
+    {
+        List<Expense> expenses = expenseRepository.findAll();
+        expenses = expenses.stream().filter(expense -> expense.getUser().getEmail().equals(userEmail)).toList();
+        return expenses;
     }
 }
