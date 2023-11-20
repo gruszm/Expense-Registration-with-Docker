@@ -1,13 +1,13 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
+import com.gruszm.kontenery.projekt_konteneryzacja.entities.Expense;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/expenses")
 public class ExpenseController
 {
@@ -20,10 +20,32 @@ public class ExpenseController
     }
 
     @GetMapping
-    public String getAllExpenses(Model model)
+    public List<Expense> getAllExpenses()
     {
-        model.addAttribute("expenses", expenseService.findAll());
+        return expenseService.findAll();
+    }
 
-        return "expenses/show-expenses";
+    @GetMapping("/category/{categoryName}")
+    public List<Expense> getAllByCategoryName(@PathVariable(name = "categoryName") String categoryName)
+    {
+        return expenseService.findByCategoryName(categoryName);
+    }
+
+    @GetMapping("/email/{email}")
+    public List<Expense> getAllByEmail(@PathVariable(name = "email") String email)
+    {
+        return expenseService.findByUserEmail(email);
+    }
+
+    @PostMapping
+    public void save(@RequestBody Expense expense)
+    {
+        expenseService.save(expense);
+    }
+
+    @DeleteMapping("/id/{id}")
+    public void deleteById(@PathVariable(name = "id") String id)
+    {
+        expenseService.deleteById(id);
     }
 }
