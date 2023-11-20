@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/expenses")
+@RequestMapping("/api/expenses")
 public class ExpenseController
 {
     private ExpenseService expenseService;
@@ -25,10 +25,10 @@ public class ExpenseController
         return expenseService.findAll();
     }
 
-    @GetMapping("/category/{categoryName}")
-    public List<Expense> getAllByCategoryName(@PathVariable(name = "categoryName") String categoryName)
+    @GetMapping("/name/{name}")
+    public List<Expense> getAllByCategoryName(@PathVariable(name = "name") String name)
     {
-        return expenseService.findByCategoryName(categoryName);
+        return expenseService.findByCategoryName(name);
     }
 
     @GetMapping("/email/{email}")
@@ -38,13 +38,13 @@ public class ExpenseController
     }
 
     @PostMapping
-    public void save(@RequestBody Expense expense)
+    public void saveExpense(@RequestBody Expense expense)
     {
         expenseService.save(expense);
     }
 
     @DeleteMapping("/id/{id}")
-    public void deleteById(@PathVariable(name = "id") String id)
+    public void deleteExpenseById(@PathVariable(name = "id") String id)
     {
         expenseService.deleteById(id);
     }

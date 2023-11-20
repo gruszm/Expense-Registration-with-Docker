@@ -1,14 +1,15 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
+import com.gruszm.kontenery.projekt_konteneryzacja.entities.Category;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategoryController
 {
     private CategoryService categoryService;
@@ -20,10 +21,32 @@ public class CategoryController
     }
 
     @GetMapping
-    public String getAllUsers(Model model)
+    public List<Category> getAllCategories()
     {
-        model.addAttribute("categories", categoryService.findAll());
+        return categoryService.findAll();
+    }
 
-        return "categories/show-categories";
+    @GetMapping("/name/{name}")
+    public Category getCategoryByName(@PathVariable(name = "name") String name)
+    {
+        return categoryService.findByName(name);
+    }
+
+    @PostMapping
+    public void saveCategory(@RequestBody Category category)
+    {
+        categoryService.save(category);
+    }
+
+    @DeleteMapping("/id/{id}")
+    public void deleteCategoryById(@PathVariable String id)
+    {
+        categoryService.deleteById(id);
+    }
+
+    @DeleteMapping("/name/{name}")
+    public void deleteCategoryByName(@PathVariable String name)
+    {
+        categoryService.deleteByName(name);
     }
 }
