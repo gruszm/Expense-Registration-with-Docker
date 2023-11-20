@@ -1,14 +1,14 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
+import com.gruszm.kontenery.projekt_konteneryzacja.entities.User;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/users")
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
 public class UserController
 {
     private UserService userService;
@@ -20,10 +20,32 @@ public class UserController
     }
 
     @GetMapping
-    public String getAllUsers(Model model)
+    public List<User> getAllUsers()
     {
-        model.addAttribute("users", userService.findAll());
+        return userService.findAll();
+    }
 
-        return "users/show-users";
+    @GetMapping("/email/{email}")
+    public User getUserByEmail(@PathVariable(name = "email") String email)
+    {
+        return userService.findByEmail(email);
+    }
+
+    @PostMapping
+    public void saveUser(@RequestBody User user)
+    {
+        userService.save(user);
+    }
+
+    @DeleteMapping("/email/{email}")
+    public void deleteUserByEmail(@PathVariable(name = "email") String email)
+    {
+        userService.deleteByEmail(email);
+    }
+
+    @DeleteMapping("/id/{id}")
+    public void deleteUserById(@PathVariable(name = "id") String id)
+    {
+        userService.deleteById(id);
     }
 }
