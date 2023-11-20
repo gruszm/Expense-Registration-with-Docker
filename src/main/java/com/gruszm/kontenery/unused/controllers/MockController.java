@@ -1,4 +1,4 @@
-package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
+package com.gruszm.kontenery.unused.controllers;
 
 import com.gruszm.kontenery.projekt_konteneryzacja.entities.User;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
