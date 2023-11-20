@@ -20,7 +20,7 @@ public class CategoryService
     }
 
     @Transactional
-    public void saveAll(Category ... categories)
+    public void saveAll(Category... categories)
     {
         for (Category c : categories)
         {

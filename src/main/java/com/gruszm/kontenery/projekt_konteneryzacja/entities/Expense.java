@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
 @Document(collection = "expenses")
-public class Expense {
-
+public class Expense
+{
     @Id
     private String id;
     private LocalDateTime timestamp;

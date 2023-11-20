@@ -20,7 +20,7 @@ public class ExpenseService
     }
 
     @Transactional
-    public void saveAll(Expense ... expenses)
+    public void saveAll(Expense... expenses)
     {
         for (Expense e : expenses)
         {

@@ -26,7 +26,8 @@ public class BookController
     }
 
     @GetMapping("/")
-    public String showHome() {
+    public String showHome()
+    {
         return "home";
     }
 
@@ -41,13 +42,15 @@ public class BookController
     }
 
     @GetMapping("/add-book")
-    public String showAddBookForm(Model model) {
+    public String showAddBookForm(Model model)
+    {
         model.addAttribute("book", new Book());
         return "add-book";
     }
 
     @PostMapping("/api/books")
-    public String addBook(@ModelAttribute Book book) {
+    public String addBook(@ModelAttribute Book book)
+    {
         bookService.addBook(book);
         return "redirect:/add-book";  // Przekierowanie na formularz po dodaniu książki
     }
