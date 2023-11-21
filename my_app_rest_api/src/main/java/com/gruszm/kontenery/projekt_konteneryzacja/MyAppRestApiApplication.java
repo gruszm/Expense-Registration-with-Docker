@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ProjektKonteneryzacjaApplication
+public class MyAppRestApiApplication
 {
 
     public static void main(String[] args)
     {
-        SpringApplication.run(ProjektKonteneryzacjaApplication.class, args);
+        SpringApplication.run(MyAppRestApiApplication.class, args);
     }
 
     @Bean
