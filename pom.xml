@@ -8,47 +8,21 @@
 		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.gruszm.kontenery</groupId>
-	<artifactId>my-app-rest-api</artifactId>
+	<artifactId>my_app</artifactId>
 	<version>1.0</version>
-	<name>my-app-rest-api</name>
-	<description>Demo project for Spring Boot</description>
+	<packaging>pom</packaging>
+	<name>my-app</name>
+
+	<modules>
+		<module>my_app_front</module>
+		<module>my_app_rest_api</module>
+		<module>my_app_common</module>
+	</modules>
+
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
