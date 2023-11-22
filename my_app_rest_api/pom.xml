@@ -40,7 +40,7 @@
 
         <dependency>
             <groupId>com.gruszm.kontenery</groupId>
-            <artifactId>my_app_common</artifactId>
+            <artifactId>my-app-common</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

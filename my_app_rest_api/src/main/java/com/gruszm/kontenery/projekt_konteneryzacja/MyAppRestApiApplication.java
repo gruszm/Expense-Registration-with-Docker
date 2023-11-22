@@ -38,9 +38,16 @@ public class MyAppRestApiApplication
             Expense e3 = new Expense("marchew", "marchew do salatki", u3, c3);
             Expense e4 = new Expense("czapka", "czapka na zime", u2, c3);
 
-            userService.saveAll(u1, u2, u3);
-            categoryService.saveAll(c1, c2, c3);
-            expenseService.saveAll(e1, e2, e3, e4);
+            try
+            {
+                categoryService.saveAll(c1, c2, c3);
+                userService.saveAll(u1, u2, u3);
+                expenseService.saveAll(e1, e2, e3, e4);
+            }
+            catch (Exception e)
+            {
+
+            }
         };
     }
 }
