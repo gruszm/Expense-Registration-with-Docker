@@ -1,8 +1,11 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
 import com.gruszm.kontenery.entities.User;
+import com.gruszm.kontenery.projekt_konteneryzacja.exceptions.UserAlreadyExistsException;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,32 +23,69 @@ public class UserController
     }
 
     @GetMapping
-    public List<User> getAllUsers()
+    public ResponseEntity<List<User>> getAllUsers()
     {
-        return userService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
     }
 
     @GetMapping("/email/{email}")
-    public User getUserByEmail(@PathVariable(name = "email") String email)
+    public ResponseEntity<User> getUserByEmail(@PathVariable(name = "email") String email)
     {
-        return userService.findByEmail(email);
+        User user = userService.findByEmail(email);
+
+        if (user == null)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        }
     }
 
     @PostMapping
-    public void saveUser(@RequestBody User user)
+    public ResponseEntity<User> saveUser(@RequestBody User user)
     {
-        userService.save(user);
+        try
+        {
+            userService.save(user);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        }
+        catch (UserAlreadyExistsException e)
+        {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
     }
 
     @DeleteMapping("/email/{email}")
-    public void deleteUserByEmail(@PathVariable(name = "email") String email)
+    public ResponseEntity<User> deleteUserByEmail(@PathVariable(name = "email") String email)
     {
-        userService.deleteByEmail(email);
+        User user = userService.findByEmail(email);
+
+        if (user == null)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        else
+        {
+            userService.deleteByEmail(email);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        }
     }
 
     @DeleteMapping("/id/{id}")
-    public void deleteUserById(@PathVariable(name = "id") String id)
+    public ResponseEntity<User> deleteUserById(@PathVariable(name = "id") String id)
     {
-        userService.deleteById(id);
+        User user = userService.findById(id);
+
+        if (user == null)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        else
+        {
+            userService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        }
     }
 }

@@ -27,7 +27,16 @@ public class MockController
         List<User> us = userService.findAll();
         User u = us.get(0);
         u.setFirstName("firstname_changed");
-        userService.saveAll(u);
+
+        try
+        {
+            userService.saveAll(u);
+        }
+        catch (Exception e)
+        {
+
+        }
+
         return "Done";
     }
 }
