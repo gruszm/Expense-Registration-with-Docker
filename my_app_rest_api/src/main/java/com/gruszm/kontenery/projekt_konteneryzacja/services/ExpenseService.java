@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExpenseService
@@ -41,6 +42,13 @@ public class ExpenseService
     public List<Expense> findAll()
     {
         return expenseRepository.findAll();
+    }
+
+    public Expense findById(String id)
+    {
+        Optional<Expense> expense = expenseRepository.findById(id);
+
+        return expense.isPresent() ? expense.get() : null;
     }
 
     public List<Expense> findByCategoryName(String categoryName)
