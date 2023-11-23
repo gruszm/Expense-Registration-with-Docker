@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Document(collection = "expenses")
@@ -14,6 +15,7 @@ public class Expense
     private LocalDateTime timestamp;
     private String name;
     private String description;
+    private BigDecimal value;
     @DBRef
     private User user;
     @DBRef
@@ -24,11 +26,12 @@ public class Expense
 
     }
 
-    public Expense(String name, String description, User user, Category category)
+    public Expense(String name, String description, double value, User user, Category category)
     {
         this.timestamp = LocalDateTime.now();
         this.name = name;
         this.description = description;
+        this.value = BigDecimal.valueOf(value);
         this.user = user;
         this.category = category;
     }
@@ -71,6 +74,16 @@ public class Expense
     public void setDescription(String description)
     {
         this.description = description;
+    }
+
+    public BigDecimal getValue()
+    {
+        return value;
+    }
+
+    public void setValue(BigDecimal value)
+    {
+        this.value = value;
     }
 
     public User getUser()

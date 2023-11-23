@@ -33,10 +33,10 @@ public class MyAppRestApiApplication
             Category c2 = new Category("category2");
             Category c3 = new Category("category3");
 
-            Expense e1 = new Expense("ziemniaki", "ziemniaki na obiad", u1, c2);
-            Expense e2 = new Expense("jaja", "jaja na sniadanie", u2, c1);
-            Expense e3 = new Expense("marchew", "marchew do salatki", u3, c3);
-            Expense e4 = new Expense("czapka", "czapka na zime", u2, c3);
+            Expense e1 = new Expense("ziemniaki", "ziemniaki na obiad", 8.00, u1, c2);
+            Expense e2 = new Expense("jaja", "jaja na sniadanie", 3.5, u2, c1);
+            Expense e3 = new Expense("marchew", "marchew do salatki", 1.8, u3, c3);
+            Expense e4 = new Expense("czapka", "czapka na zime", 19.99, u2, c3);
 
             try
             {
@@ -46,7 +46,7 @@ public class MyAppRestApiApplication
             }
             catch (Exception e)
             {
-
+                e.printStackTrace();
             }
         };
     }

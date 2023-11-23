@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Expense Name</th>
-                    <th scope="col">User Name</th>
+                    <th scope="col">Value</th>
                     <th scope="col">Timestamp</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                 <tr th:each="expense : ${expenses}">
                     <td th:text="${expense.id}" />
                     <td th:text="${expense.name}" />
-                    <td th:text="${expense.user.firstName} + ' ' + ${expense.user.lastName}" />
+                    <td th:text="${expense.value} + ' zł'" />
                     <td th:text="${expense.timestamp}" />
                 </tr>
             </tbody>
