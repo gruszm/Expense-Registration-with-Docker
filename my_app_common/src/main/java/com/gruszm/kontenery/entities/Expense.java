@@ -101,6 +101,11 @@ public class Expense
         return category;
     }
 
+    public String getCategoryName()
+    {
+        return category == null ? "null" : category.getName();
+    }
+
     public void setCategory(Category category)
     {
         this.category = category;
@@ -114,6 +119,9 @@ public class Expense
                 ", timestamp=" + timestamp +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", value=" + value +
+                ", user=" + user +
+                ", category=" + category +
                 '}';
     }
 }
