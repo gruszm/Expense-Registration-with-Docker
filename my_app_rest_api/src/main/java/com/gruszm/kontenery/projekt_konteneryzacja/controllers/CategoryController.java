@@ -1,6 +1,7 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
 import com.gruszm.kontenery.entities.*;
+import com.gruszm.kontenery.http.AdditionalHttpStatus;
 import com.gruszm.kontenery.projekt_konteneryzacja.exceptions.CategoryAlreadyExistsException;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class CategoryController
         }
         catch (CategoryAlreadyExistsException e)
         {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+            return ResponseEntity.status(AdditionalHttpStatus.ALREADY_EXISTS).body(null);
         }
     }
 

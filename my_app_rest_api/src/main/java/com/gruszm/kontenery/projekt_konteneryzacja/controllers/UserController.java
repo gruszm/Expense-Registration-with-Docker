@@ -1,6 +1,7 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
 import com.gruszm.kontenery.entities.User;
+import com.gruszm.kontenery.http.AdditionalHttpStatus;
 import com.gruszm.kontenery.projekt_konteneryzacja.exceptions.UserAlreadyExistsException;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class UserController
         }
         catch (UserAlreadyExistsException e)
         {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+            return ResponseEntity.status(AdditionalHttpStatus.ALREADY_EXISTS).body(null);
         }
     }
 
