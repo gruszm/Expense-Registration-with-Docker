@@ -3,10 +3,7 @@ package com.gruszm.kontenery.controllers;
 import com.gruszm.kontenery.entities.Category;
 import com.gruszm.kontenery.http.AdditionalHttpStatus;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -68,5 +65,18 @@ public class CategoryController
             redirectAttributes.addAttribute("categoryAdded", "");
             return "redirect:/categories";
         }
+    }
+
+    @PostMapping("/deleteCategory/{id}")
+    public String deleteMapping(@PathVariable(name = "id") String id, RedirectAttributes redirectAttributes)
+    {
+        String url = "http://" + host + ":" + port + "/api/categories" + "/id/" + id;
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Category> categoryResponse = restTemplate.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, Category.class);
+
+        redirectAttributes.addAttribute("categoryDeleted", "");
+
+        return "redirect:/categories";
     }
 }
