@@ -2,10 +2,8 @@ package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
 import com.gruszm.kontenery.entities.Category;
 import com.gruszm.kontenery.entities.Expense;
-import com.gruszm.kontenery.entities.User;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.CategoryService;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.ExpenseService;
-import com.gruszm.kontenery.projekt_konteneryzacja.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +17,12 @@ public class ExpenseController
 {
     private ExpenseService expenseService;
     private CategoryService categoryService;
-    private UserService userService;
 
     @Autowired
-    public ExpenseController(ExpenseService expenseService, CategoryService categoryService, UserService userService)
+    public ExpenseController(ExpenseService expenseService, CategoryService categoryService)
     {
         this.expenseService = expenseService;
         this.categoryService = categoryService;
-        this.userService = userService;
     }
 
     @GetMapping
@@ -47,21 +43,6 @@ public class ExpenseController
         else
         {
             return ResponseEntity.status(HttpStatus.OK).body(expenseService.findByCategoryName(name));
-        }
-    }
-
-    @GetMapping("/email/{email}")
-    public ResponseEntity<List<Expense>> getAllByEmail(@PathVariable(name = "email") String email)
-    {
-        User user = userService.findByEmail(email);
-
-        if (user == null)
-        {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        else
-        {
-            return ResponseEntity.status(HttpStatus.OK).body(expenseService.findByUserEmail(email));
         }
     }
 

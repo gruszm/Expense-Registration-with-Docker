@@ -17,8 +17,6 @@ public class Expense
     private String description;
     private BigDecimal value;
     @DBRef
-    private User user;
-    @DBRef
     private Category category;
 
     public Expense()
@@ -26,13 +24,12 @@ public class Expense
 
     }
 
-    public Expense(String name, String description, double value, User user, Category category)
+    public Expense(String name, String description, double value, Category category)
     {
         this.timestamp = LocalDateTime.now();
         this.name = name;
         this.description = description;
         this.value = BigDecimal.valueOf(value);
-        this.user = user;
         this.category = category;
     }
 
@@ -86,16 +83,6 @@ public class Expense
         this.value = value;
     }
 
-    public User getUser()
-    {
-        return user;
-    }
-
-    public void setUser(User user)
-    {
-        this.user = user;
-    }
-
     public Category getCategory()
     {
         return category;
@@ -120,7 +107,6 @@ public class Expense
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", value=" + value +
-                ", user=" + user +
                 ", category=" + category +
                 '}';
     }

@@ -1,18 +1,17 @@
 package com.gruszm.kontenery.projekt_konteneryzacja.controllers;
 
-import com.gruszm.kontenery.entities.*;
+import com.gruszm.kontenery.entities.Category;
 import com.gruszm.kontenery.http.AdditionalHttpStatus;
 import com.gruszm.kontenery.projekt_konteneryzacja.exceptions.CategoryAlreadyExistsException;
 import com.gruszm.kontenery.projekt_konteneryzacja.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/categories")
 public class CategoryController
 {

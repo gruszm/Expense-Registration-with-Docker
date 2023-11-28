@@ -57,11 +57,4 @@ public class ExpenseService
         expenses = expenses.stream().filter(expense -> expense.getCategory().getName().equals(categoryName)).toList();
         return expenses;
     }
-
-    public List<Expense> findByUserEmail(String userEmail)
-    {
-        List<Expense> expenses = expenseRepository.findAll();
-        expenses = expenses.stream().filter(expense -> expense.getUser().getEmail().equals(userEmail)).toList();
-        return expenses;
-    }
 }
