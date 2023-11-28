@@ -21,7 +21,7 @@ public class Expense
 
     public Expense()
     {
-
+        this.timestamp = LocalDateTime.now();
     }
 
     public Expense(String name, String description, double value, Category category)
