@@ -36,12 +36,19 @@
                 <tr th:each="category : ${categories}">
                     <td th:text="${category.id}" />
                     <td>
-                        <form th:action="@{/categories/deleteCategory/} + ${category.id}" method="POST">
-                            <div class="d-flex justify-content-between">
-                                <span th:text="${category.name}" />
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                        <div class="d-flex justify-content-between">
+                            <span th:text="${category.name}"></span>
+
+                            <div>
+                                <form th:action="@{/categories/modifyCategory/} + ${category.name}" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-success">Modify</button>
+                                </form>
+
+                                <form th:action="@{/categories/deleteCategory/} + ${category.id}" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </td>
                 </tr>
             </tbody>

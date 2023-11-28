@@ -46,6 +46,9 @@ public class CategoryController
     @PostMapping("/processCategoryForm")
     public String processCategoryForm(@ModelAttribute(name = "category") Category category, Errors errors, RedirectAttributes redirectAttributes)
     {
+        // trim the id to null, if it's an empty string
+        category.setId(category.getId().equals("") ? null : category.getId());
+
         String url = "http://" + host + ":" + port + "/api/categories";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -65,6 +68,19 @@ public class CategoryController
             redirectAttributes.addAttribute("categoryAdded", "");
             return "redirect:/categories";
         }
+    }
+
+    @PostMapping("/modifyCategory/{name}")
+    public String modifyCategory(@PathVariable(name = "name") String name, Model model)
+    {
+        String url = "http://" + host + ":" + port + "/api/categories" + "/name/" + name;
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Category> categoryResponse = restTemplate.getForEntity(url, Category.class);
+
+        model.addAttribute("category", categoryResponse.getBody());
+
+        return "categories/category-form";
     }
 
     @PostMapping("/deleteCategory/{id}")
