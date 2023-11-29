@@ -4,7 +4,6 @@ import com.gruszm.kontenery.entities.Expense;
 import com.gruszm.kontenery.projekt_konteneryzacja.repositories.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,15 +17,6 @@ public class ExpenseService
     public ExpenseService(ExpenseRepository expenseRepository)
     {
         this.expenseRepository = expenseRepository;
-    }
-
-    @Transactional
-    public void saveAll(Expense... expenses)
-    {
-        for (Expense e : expenses)
-        {
-            expenseRepository.save(e);
-        }
     }
 
     public void save(Expense expense)

@@ -7,7 +7,6 @@ import com.gruszm.kontenery.projekt_konteneryzacja.repositories.CategoryReposito
 import com.gruszm.kontenery.projekt_konteneryzacja.repositories.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,20 +22,6 @@ public class CategoryService
     {
         this.categoryRepository = categoryRepository;
         this.expenseRepository = expenseRepository;
-    }
-
-    @Transactional
-    public void saveAll(Category... categories) throws CategoryAlreadyExistsException
-    {
-        for (Category c : categories)
-        {
-            if (categoryRepository.findByName(c.getName()) != null)
-            {
-                throw new CategoryAlreadyExistsException("Category already exists in the database: " + c.getName());
-            }
-
-            categoryRepository.save(c);
-        }
     }
 
     public void deleteById(String id)
