@@ -70,8 +70,8 @@ public class CategoryController
         }
     }
 
-    @PostMapping("/modifyCategory/{name}")
-    public String modifyCategory(@PathVariable(name = "name") String name, Model model)
+    @PostMapping("/modifyCategory")
+    public String modifyCategory(@RequestParam(name = "categoryNameToModify") String name, Model model)
     {
         String url = "http://" + host + ":" + port + "/api/categories" + "/name/" + name;
         RestTemplate restTemplate = new RestTemplate();
@@ -83,8 +83,8 @@ public class CategoryController
         return "categories/category-form";
     }
 
-    @PostMapping("/deleteCategory/{id}")
-    public String deleteMapping(@PathVariable(name = "id") String id, RedirectAttributes redirectAttributes)
+    @PostMapping("/deleteCategory")
+    public String deleteMapping(@RequestParam(name = "categoryIdToDelete") String id, RedirectAttributes redirectAttributes)
     {
         String url = "http://" + host + ":" + port + "/api/categories" + "/id/" + id;
         RestTemplate restTemplate = new RestTemplate();

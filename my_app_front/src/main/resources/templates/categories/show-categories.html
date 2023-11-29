@@ -40,11 +40,13 @@
                             <span th:text="${category.name}"></span>
 
                             <div>
-                                <form th:action="@{/categories/modifyCategory/} + ${category.name}" method="POST" style="display: inline;">
+                                <form th:action="@{/categories/modifyCategory}" method="POST" style="display: inline;">
+                                    <input type="hidden" name="categoryNameToModify" th:value="${category.name}">
                                     <button type="submit" class="btn btn-success">Modify</button>
                                 </form>
 
-                                <form th:action="@{/categories/deleteCategory/} + ${category.id}" method="POST" style="display: inline;">
+                                <form th:action="@{/categories/deleteCategory}" method="POST" style="display: inline;">
+                                    <input type="hidden" name="categoryIdToDelete" th:value="${category.id}" />
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </div>
