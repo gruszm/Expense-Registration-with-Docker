@@ -10,6 +10,10 @@
     <div class="container mt-3">
         <a href="#" th:href="@{/expenses}" class="btn btn-success" role="button">Expenses</a>
         <a href="#" th:href="@{/categories}" class="btn btn-danger" role="button">Categories</a>
+        <div class="mt-2">
+            A fact about cats:
+            <p th:text="${catfact.fact}" />
+        </div>
     </div>
 </body>
 </html>
