@@ -31,6 +31,21 @@ public class ExpenseController
         return ResponseEntity.status(HttpStatus.OK).body(expenseService.findAll());
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Expense> getExpenseById(@PathVariable(name = "id") String id)
+    {
+        Expense expense = expenseService.findById(id);
+
+        if (expense == null)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(expense);
+        }
+    }
+
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Expense>> getAllByCategoryName(@PathVariable(name = "name") String name)
     {

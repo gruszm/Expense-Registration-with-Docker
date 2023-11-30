@@ -88,4 +88,20 @@ public class ExpenseController
 
         return "redirect:/expenses";
     }
+
+    @PostMapping("/modifyExpense")
+    public String modifyExpense(@RequestParam(name = "expenseIdToModify") String id, Model model)
+    {
+        String expenseUrl = "http://" + host + ":" + port + "/api/expenses/id/" + id;
+        String categoriesUrl = "http://" + host + ":" + port + "/api/categories";
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Expense> expenseResponse = restTemplate.getForEntity(expenseUrl, Expense.class);
+        ResponseEntity<Category[]> categoriesResponse = restTemplate.getForEntity(categoriesUrl, Category[].class);
+
+        model.addAttribute("expense", expenseResponse.getBody());
+        model.addAttribute("categories", Arrays.asList(categoriesResponse.getBody()));
+
+        return "expenses/expense-form";
+    }
 }

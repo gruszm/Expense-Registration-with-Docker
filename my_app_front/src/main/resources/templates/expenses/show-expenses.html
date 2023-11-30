@@ -8,7 +8,7 @@
 
     <style>
         .table th, .table td {
-            width: 25%;
+            width: auto;
         }
     </style>
 </head>
@@ -29,6 +29,7 @@
             <thead class="table table-dark">
                 <tr>
                     <th scope="col">Expense</th>
+                    <th scope="col">Expense Description</th>
                     <th scope="col">Category</th>
                     <th scope="col">Value</th>
                     <th scope="col">Date</th>
@@ -41,13 +42,18 @@
                             <span th:text="${expense.name}" />
 
                             <div>
-                                <form th:action="@{/expenses/deleteExpense}" method="POST">
+                                <form th:action="@{/expenses/modifyExpense}" method="POST" style="display: inline;">
+                                    <input type="hidden" name="expenseIdToModify" th:value="${expense.id}">
+                                    <button type="submit" class="btn btn-success">Modify</button>
+                                </form>
+                                <form th:action="@{/expenses/deleteExpense}" method="POST" style="display: inline;">
                                     <input type="hidden" name="expenseIdToDelete" th:value="${expense.id}" />
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </div>
                         </div>
                     </td>
+                    <td th:text="${expense.description}" />
                     <td th:text="${expense.categoryName}" />
                     <td th:text="${#numbers.formatDecimal(expense.value, 1, 'COMMA', 2, 'POINT')} + ' zł'" />
                     <td th:text="${#temporals.format(expense.timestamp, 'dd.MM.yyyy HH:mm')}" />
